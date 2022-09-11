@@ -12,12 +12,15 @@ router.get('/', async (req, res) => {
       include: [
         {
           model: Product,
+          attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
         },
       ],
-    });
-    res.json(categories);
+    })
+    .then(categories => res.json(categories))
+    ;
   }catch(error){
-    res.status(500).json(error)
+    res.status(500).json(error);
+    console.log(error)
   }
  
 });
@@ -33,6 +36,7 @@ router.get('/:id', async(req, res) => {
       include: [ 
         {
           model: Product,
+          attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
         },
       ],
     })
